@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.cloudon.couple.R
 import com.cloudon.couple.databinding.ActivityAnniversaryAddBinding
-import com.cloudon.couple.databinding.FragmentHomeBinding
 
 class AnniversaryAddActivity : AppCompatActivity() {
 
@@ -30,6 +28,8 @@ class AnniversaryAddActivity : AppCompatActivity() {
         viewModel =
             ViewModelProvider(this)[AnniversaryAddViewModel::class.java]
 
+        initData()
+
         viewModel.anniversaryAdd.observe(this) {
             Toast.makeText(this@AnniversaryAddActivity, "保存成功！", Toast.LENGTH_SHORT).show()
             finish()
@@ -38,6 +38,10 @@ class AnniversaryAddActivity : AppCompatActivity() {
         _binding.tvSave.setOnClickListener {
             saveAnniversary()
         }
+    }
+
+    private fun initData() {
+        anniversaryTime = System.currentTimeMillis()
     }
 
     private fun saveAnniversary() {

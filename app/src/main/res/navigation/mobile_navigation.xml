@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.cloudon.couple.ui.anniversay.HomeFragment"
+        android:name="com.cloudon.couple.ui.anniversay.AnnerversaryFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_anniversary" />
 
     <fragment
         android:id="@+id/navigation_dashboard"

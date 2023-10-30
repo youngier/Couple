@@ -22,7 +22,8 @@ abstract class AnniversaryDatabase : RoomDatabase() {
                     MainApplication.context,
                     AnniversaryDatabase::class.java,
                     "anniversary.db"
-                ).build()
+                ).setJournalMode(JournalMode.TRUNCATE)
+                    .build()
             }
             return db!!
         }

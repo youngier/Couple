@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.cloudon.couple.ui.anniversay.data.AnniversaryRepository
 import kotlinx.coroutines.launch
 
-class HomeViewModel : ViewModel() {
+class AnnerversaryViewModel : ViewModel() {
 
     private val _anniversary = MutableLiveData<MutableList<AnniversaryBean>>()
 

@@ -35,6 +35,9 @@ class AnniversaryAddActivity : AppCompatActivity() {
             finish()
         }
 
+        _binding.tvBack.setOnClickListener {
+            finish()
+        }
         _binding.tvSave.setOnClickListener {
             saveAnniversary()
         }

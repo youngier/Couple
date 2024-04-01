@@ -6,6 +6,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.cloudon.couple.databinding.ActivityAnniversaryAddBinding
+import com.cloudon.couple.utils.TimeUtils
+import com.haibin.calendarview.Calendar
 
 class AnniversaryAddActivity : AppCompatActivity() {
 
@@ -18,6 +20,8 @@ class AnniversaryAddActivity : AppCompatActivity() {
     private var repeatEnable = 0
     private var noticeEnable = 0
     private var anniversaryNoticeType = 0
+
+    private var selectDateDialog: SelectDateDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +41,9 @@ class AnniversaryAddActivity : AppCompatActivity() {
 
         _binding.tvBack.setOnClickListener {
             finish()
+        }
+        _binding.tvSelectDate.setOnClickListener {
+            showDateDialog()
         }
         _binding.tvSave.setOnClickListener {
             saveAnniversary()
@@ -64,5 +71,17 @@ class AnniversaryAddActivity : AppCompatActivity() {
             noticeType = anniversaryNoticeType
             top = if (_binding?.enableLunar == true) 1 else 0
         })
+    }
+
+    private fun showDateDialog() {
+        if (selectDateDialog == null) {
+            selectDateDialog =  SelectDateDialog(this, object : SelectDateDialog.OnSelectDateListener {
+                override fun onSelectDate(value: Calendar) {
+                    _binding.tvSelectDate.text = "${value.year}年${value.month}月${value.day}日\n${TimeUtils.numberToMonth(value.lunarCalendar.month)}${value.lunar}"
+                }
+            })
+
+        }
+        selectDateDialog?.show()
     }
 }

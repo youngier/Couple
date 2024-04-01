@@ -60,4 +60,7 @@ dependencies {
     kapt("androidx.room:room-compiler:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
     testImplementation("androidx.room:room-testing:$room_version")
+
+    // 日历
+    implementation("com.haibin:calendarview:3.7.1")
 }

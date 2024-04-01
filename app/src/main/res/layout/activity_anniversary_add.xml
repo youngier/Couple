@@ -116,6 +116,7 @@
                 android:text="选择时间"/>
 
             <TextView
+                android:id="@+id/tv_select_date"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:gravity="end|center_vertical"
@@ -148,7 +149,7 @@
                 android:textColor="@color/black"
                 android:text="按农历时间计算"/>
 
-            <androidx.appcompat.widget.AppCompatToggleButton
+            <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="@={ enableLunar }"/>
@@ -229,7 +230,7 @@
                 android:textColor="@color/black"
                 android:text="提醒"/>
 
-            <androidx.appcompat.widget.AppCompatToggleButton
+            <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -263,7 +264,7 @@
                 android:textColor="@color/black"
                 android:text="置顶"/>
 
-            <androidx.appcompat.widget.AppCompatToggleButton
+            <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="@={ enableTop }"/>

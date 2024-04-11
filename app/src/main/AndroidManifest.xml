@@ -17,6 +17,9 @@
             android:name=".ui.anniversay.AnniversaryAddActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.anniversay.type.TypeListActivity"
+            android:exported="false" />
+        <activity
             android:name=".HomeActivity"
             android:exported="true"
             android:label="@string/title_activity_home">

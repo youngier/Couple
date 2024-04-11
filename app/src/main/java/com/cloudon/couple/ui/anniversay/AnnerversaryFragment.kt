@@ -20,7 +20,7 @@ class AnnerversaryFragment : Fragment() {
 
     private lateinit var mAdapter: AnniversaryAdapter
 
-    private lateinit var mViewModel: AnnerversaryViewModel
+    private lateinit var mViewModel: AnniversaryViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,7 +28,7 @@ class AnnerversaryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         mViewModel =
-            ViewModelProvider(this)[AnnerversaryViewModel::class.java]
+            ViewModelProvider(this)[AnniversaryViewModel::class.java]
 
         _binding = FragmentAnniversaryBinding.inflate(inflater, container, false)
         val root: View = binding.root

@@ -6,11 +6,14 @@ import androidx.room.RoomDatabase
 import com.cloudon.couple.application.MainApplication
 import com.cloudon.couple.ui.anniversay.AnniversaryBean
 import com.cloudon.couple.ui.anniversay.AnniversaryDao
+import com.cloudon.couple.ui.anniversay.type.TypeBean
+import com.cloudon.couple.ui.anniversay.type.TypeDao
 
-@Database(version = 1, exportSchema = false, entities = [AnniversaryBean::class])
+@Database(version = 1, exportSchema = false, entities = [AnniversaryBean::class, TypeBean::class])
 abstract class AnniversaryDatabase : RoomDatabase() {
 
     abstract fun getDao(): AnniversaryDao
+    abstract fun getTypeDao(): TypeDao
 
     companion object {
 

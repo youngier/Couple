@@ -1,11 +1,13 @@
 package com.cloudon.couple.ui.anniversay
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.cloudon.couple.databinding.ActivityAnniversaryAddBinding
+import com.cloudon.couple.ui.anniversay.type.TypeListActivity
 import com.cloudon.couple.utils.TimeUtils
 import com.haibin.calendarview.Calendar
 
@@ -44,6 +46,9 @@ class AnniversaryAddActivity : AppCompatActivity() {
         }
         _binding.tvSelectDate.setOnClickListener {
             showDateDialog()
+        }
+        _binding.tvType.setOnClickListener {
+            startActivity(Intent(this, TypeListActivity::class.java))
         }
         _binding.tvSave.setOnClickListener {
             saveAnniversary()

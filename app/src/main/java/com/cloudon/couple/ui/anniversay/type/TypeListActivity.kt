@@ -1,6 +1,7 @@
 package com.cloudon.couple.ui.anniversay.type
 
 import android.R
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.EditText
@@ -10,11 +11,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.cloudon.couple.application.MainApplication
 import com.cloudon.couple.databinding.ActivityTypeListBinding
+import com.cloudon.couple.ui.EditDialog
+import com.cloudon.couple.ui.OnEditClickListener
 import java.util.Collections
 
 
-class TypeListActivity: AppCompatActivity() {
+class TypeListActivity : AppCompatActivity() {
 
     private lateinit var _binding: ActivityTypeListBinding
 
@@ -22,8 +26,8 @@ class TypeListActivity: AppCompatActivity() {
 
     private var adapter: TypeAdapter? = null
 
-    private var dialog: AlertDialog? = null
-    private var editText: EditText? = null
+    private var editDialog: EditDialog? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityTypeListBinding.inflate(LayoutInflater.from(this))
@@ -50,6 +54,17 @@ class TypeListActivity: AppCompatActivity() {
 
         _binding.tvAdd.setOnClickListener {
             showAddTypeDialog()
+        }
+        _binding.tvBack.setOnClickListener {
+            finish()
+        }
+
+        _binding.tvSave.setOnClickListener {
+            adapter?.getSelectedData()?.toList()?.let {
+                MainApplication.selectedType.addAll(it)
+            }
+            setResult(RESULT_OK)
+            finish()
         }
 
         setupTouchSort()
@@ -105,19 +120,20 @@ class TypeListActivity: AppCompatActivity() {
     }
 
     private fun showAddTypeDialog() {
-        if(dialog == null) {
-            editText = EditText(this)
-            dialog = AlertDialog.Builder(this)
-                .setTitle("请输入")
-                .setIcon(R.drawable.ic_dialog_info)
-                .setView(editText)
-                .setPositiveButton("确定"
-                ) { dialog, which -> addType(editText!!.text.toString()) }
-                .setNegativeButton("取消", null)
-                .create()
+        if (editDialog == null) {
+            editDialog = EditDialog(this, "新增分类", "请输入分类名称")
+            editDialog?.setOnEditClickListener(object : OnEditClickListener {
+                override fun onConfirm(content: String) {
+                    addType(content)
+                }
+
+                override fun onCancel() {
+
+                }
+
+            })
         }
-        editText?.setText("")
-        dialog?.show()
+        editDialog?.show()
 
     }
 

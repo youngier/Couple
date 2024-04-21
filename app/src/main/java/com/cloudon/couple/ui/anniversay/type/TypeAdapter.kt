@@ -10,6 +10,7 @@ class TypeAdapter(private val context: Context) :
     RecyclerView.Adapter<TypeAdapter.TypeViewHolder>() {
 
     private var mData = mutableListOf<TypeBean>()
+    private var mSelectedData = HashSet<TypeBean>()
 
     private var listener: OnItemListener? = null
 
@@ -34,7 +35,15 @@ class TypeAdapter(private val context: Context) :
     override fun onBindViewHolder(holder: TypeViewHolder, position: Int) {
         holder.bind(mData[position])
         holder.binding.ivDelete.setOnClickListener {
+            mSelectedData.add(mData[position])
             listener?.onDelete(position)
+        }
+        holder.binding.cb.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                mSelectedData.add(mData[position])
+            } else {
+                mSelectedData.remove(mData[position])
+            }
         }
     }
 
@@ -43,6 +52,8 @@ class TypeAdapter(private val context: Context) :
         mData.addAll(data)
         notifyDataSetChanged()
     }
+
+    fun getSelectedData() = mSelectedData
 
     class TypeViewHolder(val binding: ViewTypeItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(bean: TypeBean) {

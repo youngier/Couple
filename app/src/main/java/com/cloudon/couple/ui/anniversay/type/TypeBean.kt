@@ -2,6 +2,7 @@ package com.cloudon.couple.ui.anniversay.type
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 /**
  * 纪念日分类表
@@ -12,4 +13,4 @@ data class TypeBean (
     var id: Int = 0,
     // 标题
     var title: String = "",
-)
+): Serializable

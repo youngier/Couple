@@ -2,10 +2,12 @@ package com.cloudon.couple.ui.anniversay
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.cloudon.couple.application.MainApplication
 import com.cloudon.couple.databinding.ActivityAnniversaryAddBinding
 import com.cloudon.couple.ui.anniversay.type.TypeListActivity
 import com.cloudon.couple.utils.TimeUtils
@@ -48,7 +50,7 @@ class AnniversaryAddActivity : AppCompatActivity() {
             showDateDialog()
         }
         _binding.tvType.setOnClickListener {
-            startActivity(Intent(this, TypeListActivity::class.java))
+            startActivityForResult(Intent(this, TypeListActivity::class.java), 100)
         }
         _binding.tvSave.setOnClickListener {
             saveAnniversary()
@@ -88,5 +90,21 @@ class AnniversaryAddActivity : AppCompatActivity() {
 
         }
         selectDateDialog?.show()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            var types = ""
+            MainApplication.selectedType.forEach {
+                types += it.title + ", "
+            }
+            if (!TextUtils.isEmpty(types)) {
+                types = types.substring(0, types.length - 1)
+            }
+            if (!TextUtils.isEmpty(types)) {
+                _binding.tvType.setText(types)
+            }
+        }
     }
 }
